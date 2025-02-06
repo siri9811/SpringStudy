@@ -14,7 +14,7 @@ import lombok.ToString;
 public class Article {
 
     @Id // 대표값 지정
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 생성 어노테이션
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 생성 어노테이션 (JPA가 아닌 DB가 생성)
     private Long id;
 
     @Column

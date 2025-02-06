@@ -1,8 +1,11 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.dto.ArticleForm;
+import com.example.firstproject.dto.CommentDto;
 import com.example.firstproject.entity.Article;
 import com.example.firstproject.repository.ArticleRepository;
+import com.example.firstproject.service.CommentService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +21,12 @@ import java.util.Optional;
 
 @Controller
 @Slf4j //로깅을 위한 어노테이션
+@RequiredArgsConstructor
 public class ArticleController {
 
-    @Autowired
-    private ArticleRepository articleRepository;
+
+    private final ArticleRepository articleRepository;
+    private final CommentService commentService;
 
     @GetMapping("/articles/new")
     public String newArticleForm() {
@@ -52,9 +57,11 @@ public class ArticleController {
         // 1: id로 데이터를 가져옴
         Article articleEntity = articleRepository.findById(id).orElse(null);
 
+        List<CommentDto> commentDtos = commentService.comments(id);
+
         // 2: 가져온 데이터를 모델에 등록
         model.addAttribute("article", articleEntity);
-
+        model.addAttribute("commentDtos", commentDtos);
         // 3: 보여줄 페이지를 설정!
         return "articles/show";
     }
