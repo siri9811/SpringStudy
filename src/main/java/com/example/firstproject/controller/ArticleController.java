@@ -3,6 +3,7 @@ package com.example.firstproject.controller;
 import com.example.firstproject.dto.ArticleForm;
 import com.example.firstproject.dto.CommentDto;
 import com.example.firstproject.entity.Article;
+import com.example.firstproject.entity.Comment;
 import com.example.firstproject.repository.ArticleRepository;
 import com.example.firstproject.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -57,6 +58,7 @@ public class ArticleController {
         // 1: id로 데이터를 가져옴
         Article articleEntity = articleRepository.findById(id).orElse(null);
 
+        // 댓글 목록 가져오기
         List<CommentDto> commentDtos = commentService.comments(id);
 
         // 2: 가져온 데이터를 모델에 등록

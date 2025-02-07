@@ -1,16 +1,14 @@
 package com.example.firstproject.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @AllArgsConstructor //생성자
 @NoArgsConstructor // 디폴트 생성자
 @ToString
 @Getter
+@Setter
 public class Article {
 
     @Id // 대표값 지정
